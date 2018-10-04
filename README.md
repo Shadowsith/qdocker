@@ -1,4 +1,4 @@
-#QDocker
+# QDocker
 
 QDocker is a small qt library to dock a widget object to another 'anchor' widget object.
 
