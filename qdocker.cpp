@@ -24,7 +24,9 @@ along with QDocker.  If not, see <http://www.gnu.org/licenses/>.
 #include "qdocker.h"
 #include <QWidget>
 
-QDocker::QDocker() {}
+QDocker::QDocker() {
+    m_distance = 20;
+}
 
 QDocker::QDocker(int distance) {
     m_distance = distance;
@@ -113,9 +115,7 @@ void QDocker::setDistance(int distance) {
 void QDocker::dockAbove(QWidget* qw, QWidget* qaw,
                    HorizontalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw->move(qaw->x(), qaw->y()-qaw->height()-distance);
     resizeHorizontal(qw, qaw, pos);
 
@@ -124,9 +124,7 @@ void QDocker::dockAbove(QWidget* qw, QWidget* qaw,
 void QDocker::dockBelow(QWidget* qw, QWidget* qaw,
                         HorizontalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw->move(qaw->x(), qaw->y()+qaw->height()+distance);
     resizeHorizontal(qw, qaw, pos);
 }
@@ -134,9 +132,7 @@ void QDocker::dockBelow(QWidget* qw, QWidget* qaw,
 void QDocker::dockLeft(QWidget* qw, QWidget* qaw,
                   VerticalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw->move(qaw->x()-qw->width()-distance, qaw->y());
     resizeVertical(qw, qaw, pos);
 }
@@ -144,9 +140,7 @@ void QDocker::dockLeft(QWidget* qw, QWidget* qaw,
 void QDocker::dockRight(QWidget* qw, QWidget* qaw,
                   VerticalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw->move(qaw->x()+qaw->width()+distance, qaw->y());
     resizeVertical(qw, qaw, pos);
 }
@@ -156,9 +150,7 @@ void QDocker::dockRight(QWidget* qw, QWidget* qaw,
 void QDocker::dockAbove(QWidget& qw, QWidget& qaw,
                    HorizontalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw.move(qaw.x(), qaw.y()-qaw.height()-distance);
     resizeHorizontal(qw, qaw, pos);
 }
@@ -166,9 +158,7 @@ void QDocker::dockAbove(QWidget& qw, QWidget& qaw,
 void QDocker::dockBelow(QWidget& qw, QWidget& qaw,
                         HorizontalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw.move(qaw.x(), qaw.y()+qaw.height()+distance);
     resizeHorizontal(qw, qaw, pos);
 }
@@ -176,9 +166,7 @@ void QDocker::dockBelow(QWidget& qw, QWidget& qaw,
 void QDocker::dockLeft(QWidget& qw, QWidget& qaw,
                   VerticalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw.move(qaw.x()-qw.width()-distance, qaw.y());
     resizeVertical(qw, qaw, pos);
 }
@@ -186,9 +174,7 @@ void QDocker::dockLeft(QWidget& qw, QWidget& qaw,
 void QDocker::dockRight(QWidget& qw, QWidget& qaw,
                   VerticalPos pos, int distance)
 {
-    if (m_distance > 0 && distance == 20) {
-        distance = m_distance;
-    }
+    if(distance == 0) distance = m_distance;
     qw.move(qaw.x()+qaw.width()+distance, qaw.y());
     resizeVertical(qw, qaw, pos);
 }

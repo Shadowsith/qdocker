@@ -51,34 +51,34 @@ public:
     // for dynamic allocated widgets
 
     void dockAbove(QWidget* qw, QWidget* anchor_widget,
-                   HorizontalPos pos, int distance = 20);
+                   HorizontalPos pos, int distance = 0);
 
     void dockBelow(QWidget* qw, QWidget* anchor_widget,
-                   HorizontalPos pos, int distance = 20);
+                   HorizontalPos pos, int distance = 0);
 
     void dockLeft(QWidget* qw, QWidget* anchor_widget,
-                  VerticalPos pos, int distance = 20);
+                  VerticalPos pos, int distance = 0);
 
     void dockRight(QWidget* qw, QWidget* anchor_widget,
-                   VerticalPos pos, int distance = 20);
+                   VerticalPos pos, int distance = 0);
 
     // for stack based widgets
 
      void dockAbove(QWidget& qw, QWidget& anchor_widget,
-                   HorizontalPos pos, int distance = 20);
+                   HorizontalPos pos, int distance = 0);
 
     void dockBelow(QWidget& qw, QWidget& anchor_widget,
-                   HorizontalPos pos, int distance = 20);
+                   HorizontalPos pos, int distance = 0);
 
     void dockLeft(QWidget& qw, QWidget& anchor_widget,
-                  VerticalPos pos, int distance = 20);
+                  VerticalPos pos, int distance = 0);
 
     void dockRight(QWidget& qw, QWidget& anchor_widget,
-                   VerticalPos pos, int distance = 20);
+                   VerticalPos pos, int distance = 0);
 
 private:
 
-    int m_distance = 0;
+    int m_distance = 20;
 
     // dynamic
     void resizeHorizontal(QWidget* qw, QWidget* qaw, HorizontalPos& pos);
