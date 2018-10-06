@@ -45,9 +45,7 @@ void QDocker::resizeHorizontal(QWidget* qw, QWidget* qaw, HorizontalPos& pos) {
         } break;
 
         case HorizontalCenter: {
-           int center_anchor = qaw->x()+qaw->width()/2;
-           int center = center_anchor-qw->width()/2;
-           qw->move(center, qw->y());
+            qw->move(qaw->x()+qaw->width()/2-qw->width()/2, qw->y());
         } break;
     }
 }
@@ -61,9 +59,7 @@ void QDocker::resizeHorizontal(QWidget& qw, QWidget& qaw, HorizontalPos& pos) {
         } break;
 
         case HorizontalCenter: {
-           int center_anchor = qaw.x()+qaw.width()/2;
-           int center = center_anchor-qw.width()/2;
-           qw.move(center, qw.y());
+            qw.move(qaw.x()+qaw.width()/2-qw.width()/2, qw.y());
         } break;
     }
 }
@@ -77,9 +73,7 @@ void QDocker::resizeVertical(QWidget* qw, QWidget* qaw, VerticalPos& pos) {
         } break;
 
         case VerticalCenter: {
-            int center_anchor = qaw->y()+qaw->height()/2;
-            int center = center_anchor-qw->height()/2;
-            qw->move(qw->x(),center);
+            qw->move(qw->x(), qaw->y()+qaw->height()/2-qw->height()/2);
         } break;
     }
 }
@@ -93,9 +87,7 @@ void QDocker::resizeVertical(QWidget& qw, QWidget& qaw, VerticalPos& pos) {
         } break;
 
         case VerticalCenter: {
-            int center_anchor = qaw.y()+qaw.height()/2;
-            int center = center_anchor-qw.height()/2;
-            qw.move(qw.x(),center);
+            qw.move(qw.x(), qaw.y()-qaw.height()/2-qw.height()/2);
         } break;
     }
 }
@@ -145,6 +137,34 @@ void QDocker::dockRight(QWidget* qw, QWidget* qaw,
     resizeVertical(qw, qaw, pos);
 }
 
+bool QDocker::isDocked(QWidget* qw, QWidget* qaw, HorizontalPos pos) {
+    switch(pos) {
+        case HorizontalLeft: {
+            return qw->x() == qaw->x();
+        }
+        case HorizontalCenter: {
+            return qw->x() == qaw->x()+qaw->width()/2-qw->width()/2;
+        }
+        case HorizontalRight: {
+            return qw->x() == (qaw->x()+qaw->width());
+        }
+    } return 0;
+}
+
+bool QDocker::isDocked(QWidget* qw, QWidget* qaw, VerticalPos pos) {
+     switch(pos) {
+        case VerticalTop: {
+            return qw->y() == qaw->y();
+        }
+        case VerticalCenter: {
+            return qw->y() == (qaw->y()+qaw->height()/2-qw->height()/2);
+        }
+        case VerticalBottom: {
+            return qw->y() == (qaw->y()+qaw->height()-qw->height());
+        }
+    } return 0;
+}
+
 // for stack based widgets
 
 void QDocker::dockAbove(QWidget& qw, QWidget& qaw,
@@ -178,3 +198,32 @@ void QDocker::dockRight(QWidget& qw, QWidget& qaw,
     qw.move(qaw.x()+qaw.width()+distance, qaw.y());
     resizeVertical(qw, qaw, pos);
 }
+
+bool QDocker::isDocked(QWidget& qw, QWidget& qaw, HorizontalPos pos) {
+    switch(pos) {
+        case HorizontalLeft: {
+            return qw.x() == qaw.x();
+        }
+        case HorizontalCenter: {
+            return qw.x() == qaw.x()+qaw.width()/2-qw.width()/2;
+        }
+        case HorizontalRight: {
+            return qw.x() == (qaw.x()+qaw.width());
+        }
+    } return 0;
+}
+
+bool QDocker::isDocked(QWidget& qw, QWidget& qaw, VerticalPos pos) {
+     switch(pos) {
+        case VerticalTop: {
+            return qw.y() == qaw.y();
+        }
+        case VerticalCenter: {
+            return qw.y() == (qaw.y()+qaw.height()/2-qw.height()/2);
+        }
+        case VerticalBottom: {
+            return qw.y() == (qaw.y()+qaw.height()-qw.height());
+        }
+    } return 0;
+}
+

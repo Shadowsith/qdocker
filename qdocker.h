@@ -62,6 +62,9 @@ public:
     void dockRight(QWidget* qw, QWidget* anchor_widget,
                    VerticalPos pos, int distance = 0);
 
+    bool isDocked(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos);
+    bool isDocked(QWidget* qw, QWidget* anchor_widget, VerticalPos pos);
+
     // for stack based widgets
 
      void dockAbove(QWidget& qw, QWidget& anchor_widget,
@@ -75,6 +78,9 @@ public:
 
     void dockRight(QWidget& qw, QWidget& anchor_widget,
                    VerticalPos pos, int distance = 0);
+
+    bool isDocked(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos);
+    bool isDocked(QWidget& qw, QWidget& anchor_widget, VerticalPos pos);
 
 private:
 
