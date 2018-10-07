@@ -1,4 +1,5 @@
 # QDocker
+[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/leethomason/tinyxml2?branch=master&svg=true)](https://ci.appveyor.com/project/Shadowsith/qdocker)
 
 QDocker is a small qt library to dock a widget object to another 'anchor' widget object.
 
