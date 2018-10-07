@@ -30,15 +30,15 @@ class QDocker
 {
 public:
     enum HorizontalPos {
-      HorizontalRight,
-      HorizontalCenter,
-      HorizontalLeft,
+      AlignLeft,
+      AlignHCenter,
+      AlignRight,
     };
 
     enum VerticalPos {
-      VerticalTop,
-      VerticalCenter,
-      VerticalBottom,
+      AlignTop,
+      AlignVCenter,
+      AlignBottom,
     };
 
     QDocker();

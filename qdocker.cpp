@@ -38,13 +38,13 @@ QDocker::~QDocker() {}
 
 void QDocker::resizeHorizontal(QWidget* qw, QWidget* qaw, HorizontalPos& pos) {
     switch (pos) {
-        case HorizontalLeft: break;
+        case AlignLeft: break;
 
-        case HorizontalRight: {
+        case AlignRight: {
             qw->move(qaw->x()+qaw->width()-qw->width(), qw->y());
         } break;
 
-        case HorizontalCenter: {
+        case AlignHCenter: {
             qw->move(qaw->x()+qaw->width()/2-qw->width()/2, qw->y());
         } break;
     }
@@ -52,13 +52,13 @@ void QDocker::resizeHorizontal(QWidget* qw, QWidget* qaw, HorizontalPos& pos) {
 
 void QDocker::resizeHorizontal(QWidget& qw, QWidget& qaw, HorizontalPos& pos) {
     switch (pos) {
-        case HorizontalLeft: break;
+        case AlignLeft: break;
 
-        case HorizontalRight: {
+        case AlignRight: {
             qw.move(qaw.x()+qaw.width()-qw.width(), qw.y());
         } break;
 
-        case HorizontalCenter: {
+        case AlignHCenter: {
             qw.move(qaw.x()+qaw.width()/2-qw.width()/2, qw.y());
         } break;
     }
@@ -66,13 +66,13 @@ void QDocker::resizeHorizontal(QWidget& qw, QWidget& qaw, HorizontalPos& pos) {
 
 void QDocker::resizeVertical(QWidget* qw, QWidget* qaw, VerticalPos& pos) {
     switch (pos) {
-        case VerticalTop: break;
+        case AlignTop: break;
 
-        case VerticalBottom: {
+        case AlignBottom: {
             qw->move(qw->x(), qaw->y()+qaw->height()-qw->height());
         } break;
 
-        case VerticalCenter: {
+        case AlignVCenter: {
             qw->move(qw->x(), qaw->y()+qaw->height()/2-qw->height()/2);
         } break;
     }
@@ -80,13 +80,13 @@ void QDocker::resizeVertical(QWidget* qw, QWidget* qaw, VerticalPos& pos) {
 
 void QDocker::resizeVertical(QWidget& qw, QWidget& qaw, VerticalPos& pos) {
     switch (pos) {
-        case VerticalTop: break;
+        case AlignTop: break;
 
-        case VerticalBottom: {
+        case AlignBottom: {
             qw.move(qw.x(), qaw.y()+qaw.height()-qw.height());
         } break;
 
-        case VerticalCenter: {
+        case AlignVCenter: {
             qw.move(qw.x(), qaw.y()-qaw.height()/2-qw.height()/2);
         } break;
     }
@@ -139,13 +139,13 @@ void QDocker::dockRight(QWidget* qw, QWidget* qaw,
 
 bool QDocker::isDocked(QWidget* qw, QWidget* qaw, HorizontalPos pos) {
     switch(pos) {
-        case HorizontalLeft: {
+        case AlignLeft: {
             return qw->x() == qaw->x();
         }
-        case HorizontalCenter: {
+        case AlignHCenter: {
             return qw->x() == qaw->x()+qaw->width()/2-qw->width()/2;
         }
-        case HorizontalRight: {
+        case AlignRight: {
             return qw->x() == (qaw->x()+qaw->width());
         }
     } return 0;
@@ -153,13 +153,13 @@ bool QDocker::isDocked(QWidget* qw, QWidget* qaw, HorizontalPos pos) {
 
 bool QDocker::isDocked(QWidget* qw, QWidget* qaw, VerticalPos pos) {
      switch(pos) {
-        case VerticalTop: {
+        case AlignTop: {
             return qw->y() == qaw->y();
         }
-        case VerticalCenter: {
+        case AlignVCenter: {
             return qw->y() == (qaw->y()+qaw->height()/2-qw->height()/2);
         }
-        case VerticalBottom: {
+        case AlignBottom: {
             return qw->y() == (qaw->y()+qaw->height()-qw->height());
         }
     } return 0;
@@ -201,13 +201,13 @@ void QDocker::dockRight(QWidget& qw, QWidget& qaw,
 
 bool QDocker::isDocked(QWidget& qw, QWidget& qaw, HorizontalPos pos) {
     switch(pos) {
-        case HorizontalLeft: {
+        case AlignLeft: {
             return qw.x() == qaw.x();
         }
-        case HorizontalCenter: {
+        case AlignHCenter: {
             return qw.x() == qaw.x()+qaw.width()/2-qw.width()/2;
         }
-        case HorizontalRight: {
+        case AlignRight: {
             return qw.x() == (qaw.x()+qaw.width());
         }
     } return 0;
@@ -215,13 +215,13 @@ bool QDocker::isDocked(QWidget& qw, QWidget& qaw, HorizontalPos pos) {
 
 bool QDocker::isDocked(QWidget& qw, QWidget& qaw, VerticalPos pos) {
      switch(pos) {
-        case VerticalTop: {
+        case AlignTop: {
             return qw.y() == qaw.y();
         }
-        case VerticalCenter: {
+        case AlignVCenter: {
             return qw.y() == (qaw.y()+qaw.height()/2-qw.height()/2);
         }
-        case VerticalBottom: {
+        case AlignBottom: {
             return qw.y() == (qaw.y()+qaw.height()-qw.height());
         }
     } return 0;
