@@ -57,6 +57,17 @@ qd.dockRight(widget1, widget2, qd.AlignBottom, 30); // docks widget1 right from 
 bool status = qd.isDocked(widget1, widget2, qd.AlignLeft); 
 ```
 
+## TODO
+* Adding docking on parent-widget Corner 
+
+Example (not implmented yet):
+```cpp
+QDocker qd;
+
+// adds the item on the top left corner of its parent widget
+qd.dockCorner(ui->itm, Corner.TL(5, 5));
+```
+
 ## Example
 ```cpp
 #include "testwindow.h"
