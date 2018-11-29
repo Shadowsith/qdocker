@@ -40,13 +40,13 @@ void QDocker::resizeHorizontal(QWidget* qw, QWidget* qaw, HorizontalPos& pos) {
     switch (pos) {
         case AlignLeft: break;
 
-        case AlignRight: {
+        case AlignRight:
             qw->move(qaw->x()+qaw->width()-qw->width(), qw->y());
-        } break;
+            break;
 
-        case AlignHCenter: {
+        case AlignHCenter:
             qw->move(qaw->x()+qaw->width()/2-qw->width()/2, qw->y());
-        } break;
+            break;
     }
 }
 
@@ -54,13 +54,13 @@ void QDocker::resizeHorizontal(QWidget& qw, QWidget& qaw, HorizontalPos& pos) {
     switch (pos) {
         case AlignLeft: break;
 
-        case AlignRight: {
+        case AlignRight:
             qw.move(qaw.x()+qaw.width()-qw.width(), qw.y());
-        } break;
+            break;
 
-        case AlignHCenter: {
+        case AlignHCenter:
             qw.move(qaw.x()+qaw.width()/2-qw.width()/2, qw.y());
-        } break;
+            break;
     }
 }
 
@@ -68,13 +68,13 @@ void QDocker::resizeVertical(QWidget* qw, QWidget* qaw, VerticalPos& pos) {
     switch (pos) {
         case AlignTop: break;
 
-        case AlignBottom: {
+        case AlignBottom:
             qw->move(qw->x(), qaw->y()+qaw->height()-qw->height());
-        } break;
+            break;
 
-        case AlignVCenter: {
+        case AlignVCenter:
             qw->move(qw->x(), qaw->y()+qaw->height()/2-qw->height()/2);
-        } break;
+            break;
     }
 }
 
@@ -82,13 +82,13 @@ void QDocker::resizeVertical(QWidget& qw, QWidget& qaw, VerticalPos& pos) {
     switch (pos) {
         case AlignTop: break;
 
-        case AlignBottom: {
+        case AlignBottom:
             qw.move(qw.x(), qaw.y()+qaw.height()-qw.height());
-        } break;
+            break;
 
-        case AlignVCenter: {
+        case AlignVCenter:
             qw.move(qw.x(), qaw.y()-qaw.height()/2-qw.height()/2);
-        } break;
+            break;
     }
 }
 
@@ -104,8 +104,7 @@ void QDocker::setDistance(int distance) {
 
 // for dynamic allocated widgets
 
-void QDocker::dockAbove(QWidget* qw, QWidget* qaw,
-                   HorizontalPos pos, int distance)
+void QDocker::dockAbove(QWidget* qw, QWidget* qaw, HorizontalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw->move(qaw->x(), qaw->y()-qaw->height()-distance);
@@ -113,117 +112,166 @@ void QDocker::dockAbove(QWidget* qw, QWidget* qaw,
 
 }
 
-void QDocker::dockBelow(QWidget* qw, QWidget* qaw,
-                        HorizontalPos pos, int distance)
+void QDocker::dockBelow(QWidget* qw, QWidget* qaw, HorizontalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw->move(qaw->x(), qaw->y()+qaw->height()+distance);
     resizeHorizontal(qw, qaw, pos);
 }
 
-void QDocker::dockLeft(QWidget* qw, QWidget* qaw,
-                  VerticalPos pos, int distance)
+void QDocker::dockLeft(QWidget* qw, QWidget* qaw, VerticalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw->move(qaw->x()-qw->width()-distance, qaw->y());
     resizeVertical(qw, qaw, pos);
 }
 
-void QDocker::dockRight(QWidget* qw, QWidget* qaw,
-                  VerticalPos pos, int distance)
+void QDocker::dockRight(QWidget* qw, QWidget* qaw, VerticalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw->move(qaw->x()+qaw->width()+distance, qaw->y());
     resizeVertical(qw, qaw, pos);
 }
 
+void QDocker::dockCorner(QWidget* qw, Corner c, int top, int left) {
+
+    QWidget* parent = qw->parentWidget();
+
+    switch(c) {
+        case TopLeft:
+            qw->move(top, left);
+            break;
+
+        case BottomLeft:
+            top = parent->height()-qw->height()-top;
+            qw->move(top, left);
+            break;
+
+        case TopRight:
+            left = parent->width()-qw->width()-left;
+            qw->move(top, left);
+            break;
+
+        case BottomRight:
+            top = parent->height()-qw->height()-top;
+            left = parent->width()-qw->width()-left;
+            qw->move(top, left);
+            break;
+    }
+}
+
 bool QDocker::isDocked(QWidget* qw, QWidget* qaw, HorizontalPos pos) {
     switch(pos) {
-        case AlignLeft: {
+        case AlignLeft:
             return qw->x() == qaw->x();
-        }
-        case AlignHCenter: {
+
+        case AlignHCenter:
             return qw->x() == qaw->x()+qaw->width()/2-qw->width()/2;
-        }
-        case AlignRight: {
+
+        case AlignRight:
             return qw->x() == (qaw->x()+qaw->width());
-        }
-    } return 0;
+    }
+    return false;
 }
 
 bool QDocker::isDocked(QWidget* qw, QWidget* qaw, VerticalPos pos) {
      switch(pos) {
-        case AlignTop: {
+        case AlignTop:
             return qw->y() == qaw->y();
-        }
-        case AlignVCenter: {
+
+        case AlignVCenter:
             return qw->y() == (qaw->y()+qaw->height()/2-qw->height()/2);
-        }
-        case AlignBottom: {
+
+        case AlignBottom:
             return qw->y() == (qaw->y()+qaw->height()-qw->height());
-        }
-    } return 0;
+    }
+    return false;
 }
 
 // for stack based widgets
 
-void QDocker::dockAbove(QWidget& qw, QWidget& qaw,
-                   HorizontalPos pos, int distance)
+void QDocker::dockAbove(QWidget& qw, QWidget& qaw, HorizontalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw.move(qaw.x(), qaw.y()-qaw.height()-distance);
     resizeHorizontal(qw, qaw, pos);
 }
 
-void QDocker::dockBelow(QWidget& qw, QWidget& qaw,
-                        HorizontalPos pos, int distance)
+void QDocker::dockBelow(QWidget& qw, QWidget& qaw, HorizontalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw.move(qaw.x(), qaw.y()+qaw.height()+distance);
     resizeHorizontal(qw, qaw, pos);
 }
 
-void QDocker::dockLeft(QWidget& qw, QWidget& qaw,
-                  VerticalPos pos, int distance)
+void QDocker::dockLeft(QWidget& qw, QWidget& qaw, VerticalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw.move(qaw.x()-qw.width()-distance, qaw.y());
     resizeVertical(qw, qaw, pos);
 }
 
-void QDocker::dockRight(QWidget& qw, QWidget& qaw,
-                  VerticalPos pos, int distance)
+void QDocker::dockRight(QWidget& qw, QWidget& qaw, VerticalPos pos, int distance)
 {
     if(distance == 0) distance = m_distance;
     qw.move(qaw.x()+qaw.width()+distance, qaw.y());
     resizeVertical(qw, qaw, pos);
 }
 
+
+void QDocker::dockCorner(QWidget& qw, Corner c, int top, int left) {
+
+    QWidget* parent = qw.parentWidget();
+
+    switch(c) {
+        case TopLeft:
+            qw.move(top, left);
+            break;
+
+        case BottomLeft:
+            top = parent->height()-qw.height()-top;
+            qw.move(top, left);
+            break;
+
+        case TopRight:
+            left = parent->width()-qw.width()-left;
+            qw.move(top, left);
+            break;
+
+        case BottomRight:
+            top = parent->height()-qw.height()-top;
+            left = parent->width()-qw.width()-left;
+            qw.move(top, left);
+            break;
+    }
+}
+
+
 bool QDocker::isDocked(QWidget& qw, QWidget& qaw, HorizontalPos pos) {
     switch(pos) {
-        case AlignLeft: {
+        case AlignLeft:
             return qw.x() == qaw.x();
-        }
-        case AlignHCenter: {
+
+        case AlignHCenter:
             return qw.x() == qaw.x()+qaw.width()/2-qw.width()/2;
-        }
-        case AlignRight: {
+
+        case AlignRight:
             return qw.x() == (qaw.x()+qaw.width());
-        }
-    } return 0;
+    }
+    return false;
 }
 
 bool QDocker::isDocked(QWidget& qw, QWidget& qaw, VerticalPos pos) {
-     switch(pos) {
-        case AlignTop: {
+    switch(pos) {
+        case AlignTop:
             return qw.y() == qaw.y();
-        }
-        case AlignVCenter: {
+
+        case AlignVCenter:
             return qw.y() == (qaw.y()+qaw.height()/2-qw.height()/2);
-        }
-        case AlignBottom: {
+
+        case AlignBottom:
             return qw.y() == (qaw.y()+qaw.height()-qw.height());
-        }
-    } return 0;
+    }
+    return false;
 }
 

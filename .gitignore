@@ -1,4 +1,6 @@
+.qmake.stash
 *.pro.user
 main.cpp
 testwindow.*
 tags
+build

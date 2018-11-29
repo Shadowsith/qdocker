@@ -41,6 +41,13 @@ public:
       AlignBottom,
     };
 
+    enum Corner {
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    };
+
     QDocker();
     QDocker(int distance);
     ~QDocker();
@@ -50,34 +57,22 @@ public:
 
     // for dynamic allocated widgets
 
-    void dockAbove(QWidget* qw, QWidget* anchor_widget,
-                   HorizontalPos pos, int distance = 0);
-
-    void dockBelow(QWidget* qw, QWidget* anchor_widget,
-                   HorizontalPos pos, int distance = 0);
-
-    void dockLeft(QWidget* qw, QWidget* anchor_widget,
-                  VerticalPos pos, int distance = 0);
-
-    void dockRight(QWidget* qw, QWidget* anchor_widget,
-                   VerticalPos pos, int distance = 0);
+    void dockAbove(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos, int distance = 0);
+    void dockBelow(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos, int distance = 0);
+    void dockLeft(QWidget* qw, QWidget* anchor_widget, VerticalPos pos, int distance = 0);
+    void dockRight(QWidget* qw, QWidget* anchor_widget, VerticalPos pos, int distance = 0);
+    void dockCorner(QWidget* qw, Corner c, int top, int left);
 
     bool isDocked(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos);
     bool isDocked(QWidget* qw, QWidget* anchor_widget, VerticalPos pos);
 
     // for stack based widgets
 
-     void dockAbove(QWidget& qw, QWidget& anchor_widget,
-                   HorizontalPos pos, int distance = 0);
-
-    void dockBelow(QWidget& qw, QWidget& anchor_widget,
-                   HorizontalPos pos, int distance = 0);
-
-    void dockLeft(QWidget& qw, QWidget& anchor_widget,
-                  VerticalPos pos, int distance = 0);
-
-    void dockRight(QWidget& qw, QWidget& anchor_widget,
-                   VerticalPos pos, int distance = 0);
+    void dockAbove(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos, int distance = 0);
+    void dockBelow(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos, int distance = 0);
+    void dockLeft(QWidget& qw, QWidget& anchor_widget, VerticalPos pos, int distance = 0);
+    void dockRight(QWidget& qw, QWidget& anchor_widget, VerticalPos pos, int distance = 0);
+    void dockCorner(QWidget& qw, Corner c, int top, int left);
 
     bool isDocked(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos);
     bool isDocked(QWidget& qw, QWidget& anchor_widget, VerticalPos pos);
