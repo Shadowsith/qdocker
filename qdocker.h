@@ -61,7 +61,7 @@ public:
     void dockBelow(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos, int distance = 0);
     void dockLeft(QWidget* qw, QWidget* anchor_widget, VerticalPos pos, int distance = 0);
     void dockRight(QWidget* qw, QWidget* anchor_widget, VerticalPos pos, int distance = 0);
-    void dockCorner(QWidget* qw, Corner c, int top, int left);
+    void dockCorner(QWidget* qw, Corner c, int left, int top);
 
     bool isDocked(QWidget* qw, QWidget* anchor_widget, HorizontalPos pos);
     bool isDocked(QWidget* qw, QWidget* anchor_widget, VerticalPos pos);
@@ -72,7 +72,7 @@ public:
     void dockBelow(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos, int distance = 0);
     void dockLeft(QWidget& qw, QWidget& anchor_widget, VerticalPos pos, int distance = 0);
     void dockRight(QWidget& qw, QWidget& anchor_widget, VerticalPos pos, int distance = 0);
-    void dockCorner(QWidget& qw, Corner c, int top, int left);
+    void dockCorner(QWidget& qw, Corner c, int left, int top);
 
     bool isDocked(QWidget& qw, QWidget& anchor_widget, HorizontalPos pos);
     bool isDocked(QWidget& qw, QWidget& anchor_widget, VerticalPos pos);
