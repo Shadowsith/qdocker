@@ -133,29 +133,29 @@ void QDocker::dockRight(QWidget* qw, QWidget* qaw, VerticalPos pos, int distance
     resizeVertical(qw, qaw, pos);
 }
 
-void QDocker::dockCorner(QWidget* qw, Corner c, int top, int left) {
+void QDocker::dockCorner(QWidget* qw, Corner c, int left, int top) {
 
     QWidget* parent = qw->parentWidget();
 
     switch(c) {
         case TopLeft:
-            qw->move(top, left);
-            break;
+            qw->move(left, top);
+        break;
 
         case BottomLeft:
             top = parent->height()-qw->height()-top;
-            qw->move(top, left);
+            qw->move(left, top);
             break;
 
         case TopRight:
             left = parent->width()-qw->width()-left;
-            qw->move(top, left);
+            qw->move(left, top);
             break;
 
         case BottomRight:
             top = parent->height()-qw->height()-top;
             left = parent->width()-qw->width()-left;
-            qw->move(top, left);
+            qw->move(left, top);
             break;
     }
 }
@@ -219,29 +219,29 @@ void QDocker::dockRight(QWidget& qw, QWidget& qaw, VerticalPos pos, int distance
 }
 
 
-void QDocker::dockCorner(QWidget& qw, Corner c, int top, int left) {
+void QDocker::dockCorner(QWidget& qw, Corner c, int left, int top) {
 
     QWidget* parent = qw.parentWidget();
 
     switch(c) {
         case TopLeft:
-            qw.move(top, left);
+            qw.move(left, top);
             break;
 
         case BottomLeft:
             top = parent->height()-qw.height()-top;
-            qw.move(top, left);
+            qw.move(left, top);
             break;
 
         case TopRight:
             left = parent->width()-qw.width()-left;
-            qw.move(top, left);
+            qw.move(left, top);
             break;
 
         case BottomRight:
             top = parent->height()-qw.height()-top;
             left = parent->width()-qw.width()-left;
-            qw.move(top, left);
+            qw.move(left, top);
             break;
     }
 }
